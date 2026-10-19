@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; media-src 'self' blob: mediastream: wr-media:; style-src 'self' 'unsafe-inline'; script-src 'self'" />
+  <title>Window Recorder</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="titlebar">
+    <div class="brand"><span class="dot"></span>Window Recorder</div>
+    <nav class="tabs" role="tablist">
+      <button id="tabRecord" class="tab active" role="tab">Record</button>
+      <button id="tabLibrary" class="tab" role="tab">Recordings</button>
+    </nav>
+    <button id="refresh" class="ghost" title="Refresh window list">Refresh</button>
+  </header>
+
+  <div id="permission" class="banner" hidden>
+    Screen Recording permission is needed to see and record other windows.
+    <button id="openSettings" class="link">Open System Settings</button>
+    <span class="muted">then quit and reopen the app.</span>
+  </div>
+
+  <main>
+    <div id="recordPane" class="pane">
+    <section id="pickerView">
+      <h2>Screens</h2>
+      <p class="hint muted">Records everything on that display. Use this for full-screen apps like a full-screen Zoom call.</p>
+      <div id="screenGrid" class="grid"></div>
+      <h2 class="section">Windows</h2>
+      <p class="hint muted">Full-screen windows and windows on other desktops only show up here once they&rsquo;re on this desktop.</p>
+      <div id="grid" class="grid"></div>
+      <p id="empty" class="muted" hidden>No windows found. Open the window you want to record, then hit Refresh.</p>
+    </section>
+
+    <section id="recordingView" hidden>
+      <div class="stage">
+        <video id="preview" autoplay muted playsinline></video>
+        <span class="live">LIVE</span>
+      </div>
+      <div class="wave-panel">
+        <canvas id="wave"></canvas>
+        <div id="recStats" class="rec-stats muted"></div>
+      </div>
+      <p class="hint muted">You can close this window. Recording continues in the background; click the Dock icon to come back.</p>
+    </section>
+
+    <section id="doneView" hidden>
+      <div class="done">
+        <div class="check">✓</div>
+        <p>Saved <strong id="savedName"></strong></p>
+        <div class="row">
+          <button id="playSaved" class="secondary">Play</button>
+          <button id="reveal" class="secondary">Show in Finder</button>
+          <button id="again" class="secondary">Record another</button>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div id="libraryPane" class="pane" hidden>
+      <section id="libraryView">
+        <div class="lib-header">
+          <div class="lib-folder">
+            <h2>Recordings</h2>
+            <span id="libFolder" class="muted"></span>
+          </div>
+          <div class="row">
+            <button id="openFolder" class="secondary">Open Folder</button>
+            <button id="changeFolder" class="secondary">Change Folder…</button>
+          </div>
+        </div>
+        <div id="libGrid" class="grid"></div>
+        <p id="libEmpty" class="muted" hidden>No recordings yet. They&rsquo;ll show up here as soon as you start recording.</p>
+      </section>
+
+      <section id="playerView" hidden>
+        <div class="player-bar">
+          <button id="playerBack" class="ghost">‹ Recordings</button>
+          <strong id="playerName" class="player-name"></strong>
+          <div class="row">
+            <button id="playerReveal" class="secondary">Show in Finder</button>
+            <button id="playerTrash" class="secondary danger">Move to Trash</button>
+          </div>
+        </div>
+        <video id="player" controls playsinline></video>
+      </section>
+    </div>
+  </main>
+
+  <footer class="controls">
+    <label class="toggle" title="Window: records just that app's audio. Screen: records all system audio."><input type="checkbox" id="sysAudio" checked /> <span>Audio</span></label>
+    <label class="toggle" title="Still records the window's audio, but you won't hear that app while recording. Other apps keep playing. Windows only."><input type="checkbox" id="muteOut" /> <span>Mute while recording</span></label>
+    <label class="toggle"><input type="checkbox" id="mic" /> <span>Microphone</span></label>
+    <div class="spacer"></div>
+    <span id="status" class="muted"></span>
+    <span id="timer" class="timer" hidden>00:00</span>
+    <button id="record" class="record" disabled><span class="rec-dot"></span><span id="recordLabel">Record</span></button>
+  </footer>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

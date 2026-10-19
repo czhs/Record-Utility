@@ -1,0 +1,21 @@
+{
+  "name": "window-recorder",
+  "productName": "Window Recorder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "macOS Electron app that records one window or screen, with per-app audio capture and optional muting",
+  "repository": "github:czhs/Record-Utility",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "npm run build:native && electron .",
+    "build:native": "swiftc -O -target arm64-apple-macos14.2 -o build/wr-audiotap native/audiotap.swift",
+    "icon": "electron build/make-icon.js",
+    "package": "npm run build:native && electron-packager . \"Window Recorder\" --platform=darwin --arch=arm64 --overwrite --out=dist --icon=build/icon.icns --app-bundle-id=com.hshi.windowrecorder --extend-info=build/extend-info.plist --extra-resource=build/wr-audiotap --ignore=^/dist --ignore=^/native --ignore=^/scripts --ignore=^/build/wr-audiotap$ --ignore=\\\\.md$",
+    "install:desktop": "npm run package && rm -rf \"$HOME/Desktop/Window Recorder.app\" && ditto \"dist/Window Recorder-darwin-arm64/Window Recorder.app\" \"$HOME/Desktop/Window Recorder.app\"",
+    "ui-check": "node scripts/cdp.mjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^44.9.0"
+  }
+}

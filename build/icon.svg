@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b2f38"/>
+      <stop offset="1" stop-color="#121418"/>
+    </linearGradient>
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a404c"/>
+      <stop offset="1" stop-color="#262a32"/>
+    </linearGradient>
+    <linearGradient id="rec" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9a3d"/>
+      <stop offset="1" stop-color="#ff3b55"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff4d5e" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff4d5e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- macOS squircle tile -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+  <rect x="100.5" y="100.5" width="823" height="823" rx="185" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="3"/>
+  <!-- app window -->
+  <rect x="210" y="262" width="604" height="460" rx="44" fill="url(#win)" stroke="#59606e" stroke-width="8"/>
+  <path d="M210 360 H814" stroke="#59606e" stroke-width="8"/>
+  <circle cx="262" cy="311" r="17" fill="#ff5f57"/>
+  <circle cx="314" cy="311" r="17" fill="#febc2e"/>
+  <circle cx="366" cy="311" r="17" fill="#28c840"/>
+  <!-- capture corner brackets -->
+  <g fill="none" stroke="#e9ebef" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M300 440 V412 H340"/>
+    <path d="M684 412 H724 V440"/>
+    <path d="M300 612 V640 H340"/>
+    <path d="M684 640 H724 V612"/>
+  </g>
+  <!-- record button -->
+  <circle cx="512" cy="526" r="150" fill="url(#glow)"/>
+  <circle cx="512" cy="526" r="84" fill="url(#rec)"/>
+  <circle cx="512" cy="526" r="84" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="6"/>
+</svg>

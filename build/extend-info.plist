@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Window Recorder records your microphone alongside the window when you turn it on.</string>
+  <key>NSAudioCaptureUsageDescription</key>
+  <string>Window Recorder records the audio of the window you choose, and can mute it for you while recording.</string>
+</dict>
+</plist>
